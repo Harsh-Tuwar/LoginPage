@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>SignUp</title>
+</head>
+
+<body>
+  {{#if errorMsg}}
+    <h5>{{errorMsg}} </h5>
+  {{else}}
+    <h5>Please SignUp below</h5>
+  {{/if}}
+  <form method="post" action="/signup">
+    <label>First Name</label><input name="fName" type="text">
+    <label>Last Name</label><input name="lName" type="text">
+    <label>Username</label><input name="userName" type= "text">
+    <label>Password</label><input name="password" type="password">
+    <label>Age</label><input name="age" type="number">
+    <label>Occupation</label><input name= "occupation" type="text">
+    <button type="submit">SignUp</button>
+    <button type="reset">Reset</button>
+  </form>
+</body>
+</html>
