@@ -68,11 +68,11 @@ app.post("/login", function(req,res){
             email: user.email
          }
          //if the password and username are correct, then redirect the user to the dashboard
-         res.redircet("/dashboard");
+         res.redirect("/dashboard");
 
     }//otherwise show the error msg
     else {
-        res.render("/login", {errorMsg: "Incorrect username or password"});
+        res.render("login", {errorMsg: "Incorrect username or password"});
     }
 });
 
@@ -80,7 +80,7 @@ app.post("/login", function(req,res){
 //so when the user will logut, the session will be reseted and user will be redirected to the login page
 app.get("/logout", function(req,res){
     req.session.reset();
-    res.redircet("/login");
+    res.redirect("/login");
 })
 
 app.listen(HTTP_PORT, onHttpStartup);
