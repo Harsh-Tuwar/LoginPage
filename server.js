@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const clientSession = require('client-sessions');
 const Sequelize = require('sequelize');
-
+ 
 const HTTP_PORT = process.env.PORT || 8080;
 
 
@@ -59,9 +59,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 //coding the login route handler
 
-function onHttpStartup(){
-    console.log("Express server is listening on "+ HTTP_PORT);
-}
+function onHttpStart() {
+    console.log("Express http server listening on: " + HTTP_PORT);
+  }
 
 //hardcoding the user for this purticular example
 /* const user = { 
@@ -87,6 +87,7 @@ app.get("/signup", function(req,res){
     }).then(function(){
         console.log("User has been created successfully!!");
         res.redirect("/login");
+        res.render("signup", { });
     });
 });
 
@@ -128,7 +129,10 @@ app.get("/logout", function(req,res){
     res.redirect("/login");
 })
 
-app.listen(HTTP_PORT, onHttpStartup);
+sequelize.sync().then(() => {
+    // start the server to listen on HTTP_PORT
+    app.listen(HTTP_PORT, onHttpStart);
+});
 
 
 //adding the middleware function to check for the authorization
@@ -144,3 +148,4 @@ function ensureLogin(req, res, next) {
       next();
     }
   }
+
